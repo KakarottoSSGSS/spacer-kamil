@@ -1,18 +1,14 @@
 <template>
   <div class="wrapper">
-    <div class="search">
-      <label for="search">Search</label>
-      <input id="search" 
-             name="search"
-             v-model="searchValue"
-             @input="handleInput"
-      >
-      <ul>
+    <Claim />
+    <SearchInput />
+    
+      <!-- <ul>
         <li v-for="item in results" :key="item.data[0].nasa_id">
           <p>{{ item.data[0].description }}</p>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -20,9 +16,15 @@
 const API ='https://images-api.nasa.gov/search';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
+import Claim from '@/components/Claim';
+import SearchInput from '@/components/SearchInput';
 // funckja debounce opoznia wykonanie eventu
 export default {
   name: 'Search',
+  components: {
+    Claim,
+    SearchInput,
+  },
   data() {
     return {
       // search value musi miec wartos gdy uzywamy vmodel moze ona byc zerowa
@@ -55,21 +57,11 @@ export default {
   margin: 0;
   padding: 30px;
   width: 100%;
-}
-
-.search {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-}
-
-label {
-  font-family: Montserrat, sans-serif;
-}
-
-input {
-  height: 30px;
-  border: 0;
-  border-bottom:  1px solid black;
+  background-image: url('../assets/heroimage.jpg');
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+  background-position:  80% 0%;
+  justify-content: center;
 }
 </style>
